@@ -5,15 +5,15 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
 
-namespace EquipmentApp.Pages
+namespace EquipmentApp.PageModels
 {
-   public class EquipmentDetailModel : FreshBasePageModel
+   public class EquipmentDetailPageModel : FreshBasePageModel
     {
         public Equipment Equipment { get; set; }
 
         public Command EditCommand { get; set; }
 
-        public EquipmentDetailModel()
+        public EquipmentDetailPageModel()
         {
             EditCommand = new Command(editEquipment);
         }

@@ -1,5 +1,6 @@
 ﻿using EquipmentApp.Interfaces;
 using EquipmentApp.Models;
+using EquipmentApp.PageModels;
 using FreshMvvm;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace EquipmentApp.PageModels
                 selectedEquipment = value;
                 if (selectedEquipment != null)
                 {
-                    //CoreMethods.PushPageModel<EquipDetailsPageModel>(selectedEquipment);
+                    CoreMethods.PushPageModel<EquipmentDetailPageModel>(selectedEquipment);
                 }
 
             }
