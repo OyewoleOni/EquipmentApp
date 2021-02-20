@@ -27,7 +27,7 @@ namespace EquipmentApp.PageModels
 
         private void addEquipment(object obj)
         {
-            throw new NotImplementedException();
+            CoreMethods.PushPageModel<AddEquipmentPageModel>();
         }
 
         private async void LoadEquipments()
