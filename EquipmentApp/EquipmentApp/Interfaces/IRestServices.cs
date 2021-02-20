@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EquipmentApp.Interfaces
 {
-    interface IRestServices
+    public  interface IRestServices
     {
         Task<List<Equipment>> GetEquipments();
         Task<Equipment> GetEquipment(string id);
