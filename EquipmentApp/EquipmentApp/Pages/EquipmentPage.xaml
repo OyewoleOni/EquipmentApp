@@ -4,7 +4,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="EquipmentApp.Pages.EquipmentPage">
+             x:Class="EquipmentApp.Pages.EquipmentPage"
+             Title="Equipments">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="plus.png" Command="{Binding AddEquipmentCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ListView HasUnevenRows="True" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment}">
             <ListView.ItemTemplate>
