@@ -1,4 +1,6 @@
-﻿using EquipmentApp.PageModels;
+﻿using EquipmentApp.Interfaces;
+using EquipmentApp.PageModels;
+using EquipmentApp.Services;
 using FreshMvvm;
 using System;
 using Xamarin.Forms;
@@ -11,6 +13,7 @@ namespace EquipmentApp
         public App()
         {
             InitializeComponent();
+            FreshIOC.Container.Register<IRestServices, RestServices>();
 
             var mainPage = FreshPageModelResolver.ResolvePageModel<EquipmentPageModel>();
             var navigationContainer = new FreshNavigationContainer(mainPage);
