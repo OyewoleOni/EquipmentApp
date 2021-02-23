@@ -15,7 +15,7 @@ namespace EquipmentApp
             InitializeComponent();
             FreshIOC.Container.Register<IRestServices, RestServices>();
 
-            var mainPage = FreshPageModelResolver.ResolvePageModel<EquipmentPageModel>();
+            var mainPage = FreshPageModelResolver.ResolvePageModel<LoginPageModel>();
             var navigationContainer = new FreshNavigationContainer(mainPage);
             MainPage = navigationContainer;
         }

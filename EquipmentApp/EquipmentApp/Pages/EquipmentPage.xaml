@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="EquipmentApp.Pages.EquipmentPage"
-             Title="Equipments">
+             Title="Equipments"
+             NavigationPage.HasBackButton="False">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="plus.png" Command="{Binding AddEquipmentCommand}"/>
     </ContentPage.ToolbarItems>

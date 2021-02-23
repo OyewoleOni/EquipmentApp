@@ -7,11 +7,10 @@
              x:Class="EquipmentApp.Pages.AddEquipmentPage">
     <ContentPage.Content>
         <StackLayout Margin="20">
-            <Entry Placeholder="Name" />
-            <Entry Placeholder="Quantity" Keyboard="Numeric"/>
+            <Entry Placeholder="Name" Text="{Binding Name}" />
+            <Entry Placeholder="Quantity" Keyboard="Numeric" Text="{Binding Quantity}"/>
             <Picker Title="Choose Type" />
-            <Editor  BackgroundColor="Transparent" Placeholder="Description" HeightRequest="200"/>
-            <Button CornerRadius="35" BackgroundColor="Black" TextColor="White" Text="Save" />
+            <Button CornerRadius="35" BackgroundColor="Black" TextColor="White" Command="{Binding SaveCommand}" Text="Save" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
