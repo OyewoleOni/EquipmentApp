@@ -1,4 +1,5 @@
 ﻿using EquipmentApp.Models;
+using EquipmentApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,9 +9,9 @@ namespace EquipmentApp.Interfaces
 {
     public  interface IRestServices
     {
-        Task<List<Equipment>> GetEquipments();
+        Task<List<EquipmentViewModel>> GetEquipments();
         Task<Equipment> GetEquipment(string id);
         Task<List<Equipment>> SearchEquipment(string name);
-        Task<bool> PostEquipment(Equipment equipment);
+        Task<bool> PostEquipment(EquipmentPost equipment);
     }
 }

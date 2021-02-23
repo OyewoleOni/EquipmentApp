@@ -9,7 +9,7 @@
         <StackLayout Margin="20">
             <Entry Placeholder="Name" Text="{Binding Name}" />
             <Entry Placeholder="Quantity" Keyboard="Numeric" Text="{Binding Quantity}"/>
-            <Picker Title="Choose Type" />
+            <Picker SelectedItem="{Binding SelectedType}" ItemDisplayBinding="{Binding TypeName}" Title="Choose Type" ItemsSource="{Binding Types}"/>
             <Button CornerRadius="35" BackgroundColor="Black" TextColor="White" Command="{Binding SaveCommand}" Text="Save" />
         </StackLayout>
     </ContentPage.Content>

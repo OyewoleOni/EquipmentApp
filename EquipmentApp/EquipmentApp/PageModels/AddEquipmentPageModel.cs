@@ -1,8 +1,11 @@
-﻿using EquipmentApp.Interfaces;
+﻿using EquipmentApp.Data;
+using EquipmentApp.Interfaces;
 using EquipmentApp.Models;
+using EquipmentApp.ViewModel;
 using FreshMvvm;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Xamarin.Forms;
 
@@ -13,6 +16,8 @@ namespace EquipmentApp.PageModels
         private IRestServices _restServices;
 
         public Command SaveCommand { get; set; }
+
+        public List<EquipmentApp.Models.Type> Types { get; set; }
 
         private string name;
 
@@ -30,12 +35,12 @@ namespace EquipmentApp.PageModels
             set { quantity = value; }
         }
 
-        private int myVar;
+        private EquipmentApp.Models.Type selectedType;
 
-        public int MyProperty
+        public EquipmentApp.Models.Type SelectedType
         {
-            get { return myVar; }
-            set { myVar = value; }
+            get { return selectedType; }
+            set { selectedType = value; }
         }
 
         public AddEquipmentPageModel(IRestServices restServices)
@@ -44,15 +49,29 @@ namespace EquipmentApp.PageModels
             SaveCommand = new Command(saveEquipment);
         }
 
-        private void saveEquipment(object obj)
+        public override void Init(object initData)
         {
-            var equipment = new Equipment()
+            base.Init(initData);
+            Types = PopulateData.GetTypes();
+        }
+
+        private async void saveEquipment(object obj)
+        {
+            var equipment = new EquipmentPost()
             {
                 Name = Name,
                 Quantity = Quantity,
                 Status = 1,
-                StatusName = "Active"
+                StatusName = "Active",
+                Type = SelectedType.Id,
+                TypeName = SelectedType.TypeName
             };
+            var result = await _restServices.PostEquipment(equipment);
+
+            if (result)
+                await CoreMethods.DisplayAlert("Hi", "Your record has been added successfully......", "Alright");
+            else
+                await CoreMethods.DisplayAlert("Opps", "Something went wrong......", "Ok");
         }
     }
 }

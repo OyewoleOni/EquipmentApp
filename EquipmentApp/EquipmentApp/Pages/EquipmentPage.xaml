@@ -11,17 +11,21 @@
         <ToolbarItem IconImageSource="plus.png" Command="{Binding AddEquipmentCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView HasUnevenRows="True" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout Padding="20">
-                            <Label Text="{Binding Name}" TextColor="Black" FontSize="Large"/>
-                            <Label Text="{Binding TypeName}" TextColor="Gray" FontSize="Subtitle"/>
-                        </StackLayout>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackLayout>
+            <Entry Placeholder="Search"/>
+            <ListView HasUnevenRows="True" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="20">
+                                <Label Text="{Binding Name}" TextColor="Black" FontSize="Large"/>
+                                <Label Text="{Binding Type.TypeName}" TextColor="Gray" FontSize="Subtitle"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
