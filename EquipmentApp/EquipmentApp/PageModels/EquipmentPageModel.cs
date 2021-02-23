@@ -1,6 +1,7 @@
 ﻿using EquipmentApp.Interfaces;
 using EquipmentApp.Models;
 using EquipmentApp.PageModels;
+using EquipmentApp.ViewModel;
 using FreshMvvm;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,13 @@ namespace EquipmentApp.PageModels
     {
         private IRestServices _restServices;
 
-        public ObservableCollection<Equipment> Equipments { get; set; }
+        public ObservableCollection<EquipmentViewModel> Equipments { get; set; }
         public Command AddEquipmentCommand { get; set; }
 
         public EquipmentPageModel(IRestServices restServices)
         {
             _restServices = restServices;
-            Equipments = new ObservableCollection<Equipment>();
+            Equipments = new ObservableCollection<EquipmentViewModel>();
             LoadEquipments();
             AddEquipmentCommand = new Command(addEquipment);
         }
