@@ -38,22 +38,37 @@ namespace EquipmentApp.PageModels
             {
                 Equipments.Add(equipment);
             }
+            IsBusy = false;
         }
 
         private Equipment selectedEquipment;
 
         public Equipment SelectedEquipment
         {
-            get { return selectedEquipment; }
+            get { return null; }
             set
             {
                 selectedEquipment = value;
                 if (selectedEquipment != null)
                 {
                     CoreMethods.PushPageModel<EquipmentDetailPageModel>(selectedEquipment);
+                    RaisePropertyChanged();
                 }
 
             }
         }
+
+        private bool isBusy = true;
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set
+            {
+                isBusy = value;
+                RaisePropertyChanged();
+            }
+        }
+
     }
 }

@@ -12,7 +12,7 @@
             <StackLayout x:Name="LoginEntries">
                 <StackLayout.Padding>
                     <OnIdiom x:TypeArguments="Thickness">
-                        <OnIdiom.Phone>40,0,40,0</OnIdiom.Phone>
+                        <OnIdiom.Phone>40,40,40,0</OnIdiom.Phone>
                     </OnIdiom>
                 </StackLayout.Padding>
 
@@ -23,6 +23,7 @@
                 <!--<Label Text="Password" />-->
                 <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password, Mode=TwoWay}" TextColor="{Binding MainTextColor}"/>
                 <Button Text="Sign In" Command="{Binding LoginCommand}" />
+                <Button Text="Sign Up" Command="{Binding LoginCommand}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

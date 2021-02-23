@@ -13,19 +13,21 @@
     <ContentPage.Content>
         <StackLayout>
             <Entry Placeholder="Search"/>
-            <ListView HasUnevenRows="True" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="20">
-                                <Label Text="{Binding Name}" TextColor="Black" FontSize="Large"/>
-                                <Label Text="{Binding Type.TypeName}" TextColor="Gray" FontSize="Subtitle"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+            <Grid>
+                <ListView HasUnevenRows="True" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Padding="20">
+                                    <Label Text="{Binding Name}" TextColor="Black" FontSize="Large"/>
+                                    <Label Text="{Binding Type.TypeName}" TextColor="Gray" FontSize="Subtitle"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="Red" IsRunning="{Binding IsBusy}"/>
+            </Grid>
         </StackLayout>
-        
     </ContentPage.Content>
 </ContentPage>

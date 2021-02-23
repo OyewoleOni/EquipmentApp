@@ -16,7 +16,7 @@ namespace EquipmentApp.PageModels
         public Command LoginCommand { get; set; }
         public Command UserNameCompletedCommand { get; set; }
         public Command PasswordFocusCommand { get; set; }
-        public bool IsRunning { get; set; }
+        
 
         public LoginPageModel()
         {
@@ -25,7 +25,6 @@ namespace EquipmentApp.PageModels
             PasswordFocusCommand = new Command<Entry>(PasswordFocus);
             PageBackGroundColor = Models.Constants.BackgroundColor;
             MainTextColor = Models.Constants.MainTextColor;
-            IsRunning = false;
         }
 
         private void PasswordFocus(Entry obj)
@@ -40,17 +39,16 @@ namespace EquipmentApp.PageModels
 
         private void Login()
         {
-            IsRunning = true;
-            Thread.Sleep(2000);
+           
             User user = new User(UserName, Password);
             if (user.CheckUserInfo())
             {
                 CoreMethods.PushPageModel<EquipmentPageModel>();
-                IsRunning = false;
+                
             }
             else
             {
-                IsRunning = false;
+                
                 CoreMethods.DisplayAlert("Wrong User", "Your credentials are not correct. Please check them. Thanks", "Cancel");
             }
         }
@@ -69,6 +67,14 @@ namespace EquipmentApp.PageModels
         {
             get { return _password; }
             set { _password = value; }
+        }
+
+        private bool isBusy = true;
+
+        public bool IsBusy
+        {
+            get { return isBusy; }
+            set { isBusy = value; }
         }
 
 
