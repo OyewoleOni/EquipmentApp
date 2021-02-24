@@ -1,4 +1,5 @@
-﻿using EquipmentApp.Interfaces;
+﻿using EquipmentApp.Data;
+using EquipmentApp.Interfaces;
 using EquipmentApp.PageModels;
 using EquipmentApp.Services;
 using FreshMvvm;
@@ -10,6 +11,8 @@ namespace EquipmentApp
 {
     public partial class App : Application
     {
+        static TokenDatabaseController tokenDatabase;
+        static UserDatabaseController userDatabase;
         public App()
         {
             InitializeComponent();
@@ -30,6 +33,30 @@ namespace EquipmentApp
 
         protected override void OnResume()
         {
+        }
+
+        public static UserDatabaseController UserDatabase
+        {
+            get
+            {
+                if(userDatabase == null)
+                {
+                    userDatabase = new UserDatabaseController();
+                }
+                return userDatabase;
+            }
+        }
+
+        public static TokenDatabaseController TokenDatabase
+        {
+            get
+            {
+                if (tokenDatabase == null)
+                {
+                    tokenDatabase = new TokenDatabaseController();
+                }
+                return tokenDatabase;
+            }
         }
     }
 }
