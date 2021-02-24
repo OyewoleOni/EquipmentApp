@@ -1,4 +1,5 @@
 ﻿using EquipmentApp.Interfaces;
+using EquipmentApp.iOS.Data;
 using Foundation;
 using SQLite;
 using System;
@@ -7,7 +8,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using UIKit;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(SQLite_IOS))]
 namespace EquipmentApp.iOS.Data
 {
     public class SQLite_IOS : ISQLite
