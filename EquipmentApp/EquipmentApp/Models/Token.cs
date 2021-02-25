@@ -7,7 +7,7 @@ namespace EquipmentApp.Models
 {
     public class Token
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string AccessToken { get; set; }
         public string ErrorDescription { get; set; }

@@ -7,7 +7,7 @@ namespace EquipmentApp.Models
 {
     public class User
     {
-        [PrimaryKey]
+        [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
@@ -23,7 +23,8 @@ namespace EquipmentApp.Models
 
         public bool CheckUserInfo()
         {
-            if (this.UserName == "oni" && this.Password == "oni")
+           var user = App.UserDatabase.GetUser(UserName, Password);
+            if (user != null)
                 return true;
             else
                 return false;

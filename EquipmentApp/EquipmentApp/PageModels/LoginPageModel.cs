@@ -14,6 +14,7 @@ namespace EquipmentApp.PageModels
         public Color PageBackGroundColor { get; set; }
         public Color MainTextColor { get; set; }
         public Command LoginCommand { get; set; }
+        public Command RegisterCommand { get; set; }
         public Command UserNameCompletedCommand { get; set; }
         public Command PasswordFocusCommand { get; set; }
         
@@ -21,10 +22,16 @@ namespace EquipmentApp.PageModels
         public LoginPageModel()
         {
             LoginCommand = new Command(Login);
+            RegisterCommand = new Command(Register);
             //UserNameCompletedCommand = new Command<Entry>(UserNameCompleted);
             PasswordFocusCommand = new Command<Entry>(PasswordFocus);
             PageBackGroundColor = Models.Constants.BackgroundColor;
             MainTextColor = Models.Constants.MainTextColor;
+        }
+
+        private void Register()
+        {
+            CoreMethods.PushPageModel<RegisterPageModel>();
         }
 
         private void PasswordFocus(Entry obj)

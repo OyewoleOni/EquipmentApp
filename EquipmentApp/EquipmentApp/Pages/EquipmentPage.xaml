@@ -14,14 +14,33 @@
         <StackLayout>
             <Entry Placeholder="Search"/>
             <Grid>
-                <ListView HasUnevenRows="True" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}">
+                <ListView x:Name="lvEquipment" HasUnevenRows="True" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout Padding="20">
-                                    <Label Text="{Binding Name}" TextColor="Black" FontSize="Large"/>
-                                    <Label Text="{Binding Type.TypeName}" TextColor="Gray" FontSize="Subtitle"/>
-                                </StackLayout>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackLayout Padding="5, 10,0,10" Grid.Column="0">
+                                        <Label Text="{Binding Name}" TextColor="Black" FontSize="Large"/>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Type: " TextColor="Gray" FontSize="Subtitle"/>
+                                            <Label Text="{Binding Type.TypeName}" TextColor="Gray" FontSize="Subtitle"/>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="Quantity: " TextColor="Gray" FontSize="Subtitle"/>
+                                            <Label Text="{Binding Quantity}" TextColor="Gray" FontSize="Subtitle"/>
+                                        </StackLayout>
+                                        
+                                    </StackLayout>
+                                    <!--<Label Text="{Binding Name}" Grid.Column="0" TextColor="Black" VerticalTextAlignment="Start"  FontSize="Large"/>
+                                    <Label Text="{Binding Type.TypeName}" Grid.Column="0" TextColor="Gray" VerticalTextAlignment="End" FontSize="Subtitle"/>-->
+                                    <Image Source="transparent_edit1.jpg" HeightRequest="50" WidthRequest="50" Grid.Column="1"/>
+                                    <Image Source="transparent_edit1.jpg" HeightRequest="50" WidthRequest="50" Grid.Column="2"/>
+                                </Grid>
+                                
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

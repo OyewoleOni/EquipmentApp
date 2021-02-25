@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="EquipmentApp.Pages.LoginPage"
-             BackgroundColor="{Binding PageBackGroundColor}"
+             x:Class="EquipmentApp.Pages.RegisterPage"
+              BackgroundColor="{Binding PageBackGroundColor}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout x:Name="MasterLayout">
@@ -18,12 +18,12 @@
 
                 <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True" IsVisible="{Binding IsRunning}"/>
 
-                <!--<Label Text="Username"/>-->
                 <Entry Placeholder="Username" Text="{Binding UserName, Mode=TwoWay}" TextColor="{Binding MainTextColor}" />
-                <!--<Label Text="Password" />-->
+
                 <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password, Mode=TwoWay}" TextColor="{Binding MainTextColor}"/>
-                <Button Text="Sign In" Command="{Binding LoginCommand}" />
-                <Button Text="Sign Up" Command="{Binding RegisterCommand}" />
+
+                <Entry Placeholder="Confirm Password" IsPassword="True" Text="{Binding ConfirmPassword, Mode=TwoWay}" TextColor="{Binding MainTextColor}"/>
+                <Button Text="Register" Command="{Binding RegisterCommand}" />
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

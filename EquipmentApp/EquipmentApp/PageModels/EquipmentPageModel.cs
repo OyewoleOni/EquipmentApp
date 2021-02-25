@@ -17,6 +17,7 @@ namespace EquipmentApp.PageModels
 
         public ObservableCollection<EquipmentViewModel> Equipments { get; set; }
         public Command AddEquipmentCommand { get; set; }
+        public Command DeleteEquipmentCommand { get; set; }
 
         public EquipmentPageModel(IRestServices restServices)
         {
@@ -24,6 +25,18 @@ namespace EquipmentApp.PageModels
             Equipments = new ObservableCollection<EquipmentViewModel>();
             LoadEquipments();
             AddEquipmentCommand = new Command(addEquipment);
+            DeleteEquipmentCommand = new Command(deleteEquipment);
+        }
+
+        private async void deleteEquipment(object obj)
+        {
+            var content = obj as EquipmentViewModel;
+            var isDeleted = await _restServices.DeleteEquipment(content.Id);
+            if (isDeleted)
+            {
+                Equipments.Remove(content);
+            }
+            
         }
 
         private void addEquipment(object obj)
