@@ -19,8 +19,8 @@ namespace EquipmentApp.Data
             databse = DependencyService.Get<ISQLite>().GetConnection();
             databse.CreateTable<User>();
         }
-
-        public User GetUser()
+        
+        public User GetUser(string userName, string password)
         {
             lock (locker)
             {
@@ -30,7 +30,9 @@ namespace EquipmentApp.Data
                 }
                 else
                 {
-                    return databse.Table<User>().First();
+                    return databse.Table<User>()
+                                  .Where(x => x.UserName == userName && x.Password == password)
+                                  .FirstOrDefault();
                 }
             }
         }
