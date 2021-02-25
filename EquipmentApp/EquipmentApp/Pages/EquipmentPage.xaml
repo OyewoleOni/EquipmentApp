@@ -18,7 +18,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Grid>
+                                <Grid ColumnSpacing="5">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="7*"/>
                                         <ColumnDefinition Width="*"/>
@@ -35,10 +35,9 @@
                                         </StackLayout>
                                         
                                     </StackLayout>
-                                    <!--<Label Text="{Binding Name}" Grid.Column="0" TextColor="Black" VerticalTextAlignment="Start"  FontSize="Large"/>
-                                    <Label Text="{Binding Type.TypeName}" Grid.Column="0" TextColor="Gray" VerticalTextAlignment="End" FontSize="Subtitle"/>-->
-                                    <Image Source="transparent_edit1.jpg" HeightRequest="50" WidthRequest="50" Grid.Column="1"/>
-                                    <Image Source="transparent_edit1.jpg" HeightRequest="50" WidthRequest="50" Grid.Column="2"/>
+
+                                    <ImageButton  x:Name="btnEdit" BackgroundColor="Transparent" Source="edit2.png" WidthRequest="60" HeightRequest="60" Grid.Column="1" Clicked="btnEdit_Clicked"/>
+                                    <ImageButton  x:Name="btnDelete"  BackgroundColor="Transparent" Source="trash.png" WidthRequest="60" HeightRequest="60"   Grid.Column="2" Clicked="btnDelete_Clicked"/>
                                 </Grid>
                                 
                             </ViewCell>

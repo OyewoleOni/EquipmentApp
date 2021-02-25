@@ -19,6 +19,7 @@ namespace EquipmentApp.PageModels
         public Command AddEquipmentCommand { get; set; }
         public Command DeleteEquipmentCommand { get; set; }
 
+        public Command EditEquipmentCommand { get; set; }
         public EquipmentPageModel(IRestServices restServices)
         {
             _restServices = restServices;
@@ -26,16 +27,36 @@ namespace EquipmentApp.PageModels
             LoadEquipments();
             AddEquipmentCommand = new Command(addEquipment);
             DeleteEquipmentCommand = new Command(deleteEquipment);
+            EditEquipmentCommand = new Command(editEqupment);
+        }
+
+        private void editEqupment(object obj)
+        {
+            throw new NotImplementedException();
         }
 
         private async void deleteEquipment(object obj)
         {
             var content = obj as EquipmentViewModel;
-            var isDeleted = await _restServices.DeleteEquipment(content.Id);
-            if (isDeleted)
+            try
             {
-                Equipments.Remove(content);
+                var result = await CoreMethods.DisplayAlert("Info", "Are you sure you want to delete this?", "Alright", "Cancel");
+                if (result)
+                {
+                    var isDeleted = await _restServices.DeleteEquipment(content.Id);
+                    if (isDeleted)
+                    {
+                        Equipments.Remove(content);
+                    }
+                }
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+          
+           
             
         }
 
