@@ -16,5 +16,10 @@ namespace EquipmentApp.Pages
         {
             InitializeComponent();
         }
+
+        private void entUserName_Completed(object sender, EventArgs e)
+        {
+            entPassword.Focus();
+        }
     }
 }
