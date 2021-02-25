@@ -55,7 +55,7 @@ namespace EquipmentApp.PageModels
             Types = PopulateData.GetTypes();
         }
 
-        private async void saveEquipment(object obj)
+        private async void saveEquipment()
         {
             var equipment = new EquipmentPost()
             {
@@ -66,12 +66,30 @@ namespace EquipmentApp.PageModels
                 Type = SelectedType.Id,
                 TypeName = SelectedType.TypeName
             };
-            var result = await _restServices.PostEquipment(equipment);
+            try
+            {
+                var isCreated = await _restServices.PostEquipment(equipment);
 
-            if (result)
-                await CoreMethods.DisplayAlert("Hi", "Your record has been added successfully......", "Alright");
-            else
-                await CoreMethods.DisplayAlert("Opps", "Something went wrong......", "Ok");
+                if (isCreated)
+                {
+                    var result = await CoreMethods.DisplayAlert("Hi", "Your record has been added successfully......", "Alright", "Cancel");
+                    if (result)
+                    {
+                        await CoreMethods.PushPageModel<EquipmentPageModel>();
+                    }
+                }
+                else
+                {
+                    await CoreMethods.DisplayAlert("Opps", "Something went wrong......", "Ok");
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
         }
+                
     }
 }

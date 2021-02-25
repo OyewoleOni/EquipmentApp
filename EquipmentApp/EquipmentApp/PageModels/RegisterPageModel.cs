@@ -55,21 +55,32 @@ namespace EquipmentApp.PageModels
             set { confirmPassword = value; }
         }
 
-        private void Register()
+        private async void Register()
         {
-            if(string.IsNullOrWhiteSpace(UserName) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(ConfirmPassword))
+            if (string.IsNullOrWhiteSpace(UserName) || string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(ConfirmPassword))
             {
-                CoreMethods.DisplayAlert("Oops!", "All fields must be filled", "Alright");
+                await CoreMethods.DisplayAlert("Oops!", "All fields must be filled", "Alright");
             }
-            else if(Password != ConfirmPassword)
+            else if (Password != ConfirmPassword)
             {
-                CoreMethods.DisplayAlert("Oops!", "Password must match", "Alright");
+                await CoreMethods.DisplayAlert("Oops!", "Password must match", "Alright");
             }
             else
             {
-                User user = new User(UserName, Password);
-                App.UserDatabase.SaveUser(user);
-                CoreMethods.DisplayAlert("Success!", "Your registration is successful....You can now login", "Alright");
+                try
+                {
+                    User user = new User(UserName, Password);
+                    App.UserDatabase.SaveUser(user);
+                    var result = await CoreMethods.DisplayAlert("Success!", "Your registration is successful....You can now login", "Alright", "Cancel");
+                    if (result)
+                        await CoreMethods.PushPageModel<LoginPageModel>();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+               
             }
         }
     }
