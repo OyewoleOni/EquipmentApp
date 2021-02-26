@@ -16,5 +16,20 @@ namespace EquipmentApp.Pages
         {
             InitializeComponent();
         }
+
+        private void entUserName_Completed(object sender, EventArgs e)
+        {
+            entPassword.Focus();
+        }
+
+        private void entPassword_Completed(object sender, EventArgs e)
+        {
+            entConfirmPassword.Focus();
+        }
+
+        private void entConfirmPassword_Completed(object sender, EventArgs e)
+        {
+            btnRegister.Focus();
+        }
     }
 }

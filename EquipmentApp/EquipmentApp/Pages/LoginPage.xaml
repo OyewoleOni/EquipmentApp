@@ -18,10 +18,12 @@
 
                 <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True" IsVisible="{Binding IsRunning}"/>
 
-                <!--<Label Text="Username"/>-->
-                <Entry x:Name="entUserName" Completed="entUserName_Completed" Placeholder="Username" Text="{Binding UserName, Mode=TwoWay}" TextColor="{Binding MainTextColor}" />
-                <!--<Label Text="Password" />-->
-                <Entry x:Name="entPassword" Placeholder="Password" IsPassword="True" Text="{Binding Password, Mode=TwoWay}" TextColor="{Binding MainTextColor}"/>
+                
+                <Entry x:Name="entUserName" Completed="entUserName_Completed" Placeholder="Username" Text="{Binding UserName, Mode=TwoWay}" 
+                       TextColor="{Binding MainTextColor}" />
+                
+                <Entry x:Name="entPassword" Placeholder="Password" IsPassword="True" Text="{Binding Password, Mode=TwoWay}" 
+                       TextColor="{Binding MainTextColor}"/>
                 <Button Text="Sign In" Command="{Binding LoginCommand}" />
                 <Button Text="Sign Up" Command="{Binding RegisterCommand}" />
             </StackLayout>
