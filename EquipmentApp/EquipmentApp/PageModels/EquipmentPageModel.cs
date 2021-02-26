@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EquipmentApp.PageModels
@@ -16,10 +17,11 @@ namespace EquipmentApp.PageModels
         private IRestServices _restServices;
 
         public ObservableCollection<EquipmentViewModel> Equipments { get; set; }
-        public Command AddEquipmentCommand { get; set; }
-        public Command DeleteEquipmentCommand { get; set; }
+        public ICommand AddEquipmentCommand { get; set; }
+        public ICommand DeleteEquipmentCommand { get; set; }
 
-        public Command EditEquipmentCommand { get; set; }
+        public ICommand EditEquipmentCommand { get; set; }
+        public ICommand SearchCommand { get; set; }
         public EquipmentPageModel(IRestServices restServices)
         {
             _restServices = restServices;
@@ -28,6 +30,17 @@ namespace EquipmentApp.PageModels
             AddEquipmentCommand = new Command(addEquipment);
             DeleteEquipmentCommand = new Command(deleteEquipment);
             EditEquipmentCommand = new Command(editEqupment);
+            SearchCommand = new Command(searchEquipment);
+        }
+
+        private async void searchEquipment(object obj)
+        {
+            var equipments = await _restServices.SearchEquipment("");
+            foreach (var equipment in equipments)
+            {
+                Equipments.Add(equipment);
+            }
+            IsBusy = false;
         }
 
         private void editEqupment(object obj)
@@ -52,12 +65,8 @@ namespace EquipmentApp.PageModels
             }
             catch (Exception)
             {
-
                 throw;
             }
-          
-           
-            
         }
 
         private void addEquipment(object obj)
