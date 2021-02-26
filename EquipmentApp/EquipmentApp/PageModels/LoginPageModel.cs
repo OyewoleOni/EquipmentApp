@@ -60,7 +60,7 @@ namespace EquipmentApp.PageModels
             }
         }
 
-        private string _userName;
+        private string _userName = "oni1";
 
         public string UserName
         {
@@ -68,7 +68,7 @@ namespace EquipmentApp.PageModels
             set { _userName = value; }
         }
 
-        private string _password;
+        private string _password = "oni1";
 
         public string Password
         {

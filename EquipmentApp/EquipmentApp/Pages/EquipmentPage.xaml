@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:EquipmentApp;assembly=EquipmentApp"
              mc:Ignorable="d"
              x:Class="EquipmentApp.Pages.EquipmentPage"
              Title="Equipments"
@@ -10,11 +11,16 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="plus.png" Command="{Binding AddEquipmentCommand}"/>
     </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:ReversesBoolConverter x:Key="reverseBool"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="Search"/>
+            <Entry x:Name="entSearch" Completed="entSearch_Completed"  Placeholder="Search"/>
             <Grid>
-                <ListView x:Name="lvEquipment" HasUnevenRows="True" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}">
+                <ListView x:Name="lvEquipment" HasUnevenRows="True" IsVisible="{Binding HasItem}" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -46,6 +52,7 @@
                 </ListView>
                 <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="Red" IsRunning="{Binding IsBusy}"/>
             </Grid>
+            <Label Text="No Equipments found" IsVisible="{Binding HasItem, Converter={StaticResource reverseBool}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

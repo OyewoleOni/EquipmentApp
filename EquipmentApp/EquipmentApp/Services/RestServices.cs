@@ -60,27 +60,39 @@ namespace EquipmentApp.Services
 
         public async Task<List<EquipmentViewModel>> SearchEquipment(string name)
         {
+            
             List<EquipmentViewModel> equipmentViewModels = new List<EquipmentViewModel>();
-            var response = await httpClient.GetStringAsync($"{URL}/search?name={name}&status=1&type=1");
 
-            var equipments = JsonConvert.DeserializeObject<List<Equipment>>(response);
+            var response = await httpClient.GetAsync($"{URL}/search?name={name}");
 
-            foreach (var item in equipments)
+            if((int)response.StatusCode == 200)
             {
-                var equipmentVM = new EquipmentViewModel()
+                var body = await httpClient.GetStringAsync($"{URL}/search?name={name}");
+                var equipments = JsonConvert.DeserializeObject<List<Equipment>>(body);
+
+                foreach (var item in equipments)
                 {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Type = new Models.EquipmentType()
+                    var equipmentVM = new EquipmentViewModel()
                     {
-                        Id = item.Type,
-                        TypeName = item.TypeName
-                    },
-                    Quantity = item.Quantity
-                };
-                equipmentViewModels.Add(equipmentVM);
+                        Id = item.Id,
+                        Name = item.Name,
+                        Type = new Models.EquipmentType()
+                        {
+                            Id = item.Type,
+                            TypeName = item.TypeName
+                        },
+                        Quantity = item.Quantity
+                    };
+                    equipmentViewModels.Add(equipmentVM);
+                }
+                return equipmentViewModels;
             }
-            return equipmentViewModels;
+            else
+            {
+                return equipmentViewModels;
+            }
+
+            
         }
 
         public async Task<bool> DeleteEquipment(string id)

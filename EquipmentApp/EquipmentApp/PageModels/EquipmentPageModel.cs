@@ -19,7 +19,6 @@ namespace EquipmentApp.PageModels
         public ObservableCollection<EquipmentViewModel> Equipments { get; set; }
         public ICommand AddEquipmentCommand { get; set; }
         public ICommand DeleteEquipmentCommand { get; set; }
-
         public ICommand EditEquipmentCommand { get; set; }
         public ICommand SearchCommand { get; set; }
         public EquipmentPageModel(IRestServices restServices)
@@ -35,12 +34,17 @@ namespace EquipmentApp.PageModels
 
         private async void searchEquipment(object obj)
         {
-            var equipments = await _restServices.SearchEquipment("");
+            var searchText = obj as string;
+            var equipments = await _restServices.SearchEquipment(searchText);
+            Equipments.Clear();
             foreach (var equipment in equipments)
             {
                 Equipments.Add(equipment);
             }
             IsBusy = false;
+            HasItem = (Equipments.Count > 0) ? true : false;
+            
+
         }
 
         private void editEqupment(object obj)
@@ -82,6 +86,7 @@ namespace EquipmentApp.PageModels
                 Equipments.Add(equipment);
             }
             IsBusy = false;
+            HasItem = (Equipments.Count > 0) ? true : false;
         }
 
         private Equipment selectedEquipment;
@@ -100,6 +105,19 @@ namespace EquipmentApp.PageModels
 
             }
         }
+
+        private bool _hasItem = false;
+
+        public bool HasItem
+        {
+            get { return _hasItem; }
+            set
+            {
+                _hasItem = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
         private bool isBusy = true;
 

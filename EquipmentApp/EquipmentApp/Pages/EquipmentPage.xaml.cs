@@ -19,7 +19,7 @@ namespace EquipmentApp.Pages
             InitializeComponent();
         }
 
-       
+
         private void btnEdit_Clicked(object sender, EventArgs e)
         {
             var button = sender as Button;
@@ -40,6 +40,17 @@ namespace EquipmentApp.Pages
             var vm = BindingContext as EquipmentPageModel;
 
             vm?.DeleteEquipmentCommand.Execute(equipment);
+        }
+
+        private void entSearch_Completed(object sender, EventArgs e)
+        {
+            var entry = sender as Entry;
+
+            var searchText = entry.Text;
+
+            var vm = BindingContext as EquipmentPageModel;
+
+            vm?.SearchCommand.Execute(searchText);
         }
     }
 }
