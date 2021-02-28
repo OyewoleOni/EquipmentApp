@@ -39,20 +39,20 @@
                                             <Label Text="Quantity: " TextColor="Gray" FontSize="Subtitle"/>
                                             <Label Text="{Binding Quantity}" TextColor="Gray" FontSize="Subtitle"/>
                                         </StackLayout>
-                                        
+
                                     </StackLayout>
 
                                     <ImageButton  x:Name="btnEdit" BackgroundColor="Transparent" Source="edit2.png" WidthRequest="60" HeightRequest="60" Grid.Column="1" Clicked="btnEdit_Clicked"/>
                                     <ImageButton  x:Name="btnDelete"  BackgroundColor="Transparent" Source="trash.png" WidthRequest="60" HeightRequest="60"   Grid.Column="2" Clicked="btnDelete_Clicked"/>
                                 </Grid>
-                                
+
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
                 <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="Red" IsRunning="{Binding IsBusy}"/>
+                <Label Text="No Equipments found" IsVisible="{Binding HasItem, Converter={StaticResource reverseBool}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             </Grid>
-            <Label Text="No Equipments found" IsVisible="{Binding HasItem, Converter={StaticResource reverseBool}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

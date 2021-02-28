@@ -16,7 +16,7 @@
                     </OnIdiom>
                 </StackLayout.Padding>
 
-                <ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True" IsVisible="{Binding IsRunning}"/>
+                <!--<ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True" IsVisible="{Binding IsRunning}"/>-->
 
                 <Entry x:Name="entUserName" Completed="entUserName_Completed" Placeholder="Username" Text="{Binding UserName, Mode=TwoWay}" TextColor="{Binding MainTextColor}" />
 

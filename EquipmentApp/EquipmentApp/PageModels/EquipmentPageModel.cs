@@ -35,7 +35,8 @@ namespace EquipmentApp.PageModels
         private async void searchEquipment(object obj)
         {
             var searchText = obj as string;
-            var equipments = await _restServices.SearchEquipment(searchText);
+
+            var equipments = (string.IsNullOrWhiteSpace(searchText) ? await _restServices.GetEquipments() : await _restServices.SearchEquipment(searchText));
             Equipments.Clear();
             foreach (var equipment in equipments)
             {
@@ -43,8 +44,6 @@ namespace EquipmentApp.PageModels
             }
             IsBusy = false;
             HasItem = (Equipments.Count > 0) ? true : false;
-            
-
         }
 
         private void editEqupment(object obj)
@@ -57,7 +56,7 @@ namespace EquipmentApp.PageModels
             var content = obj as EquipmentViewModel;
             try
             {
-                var result = await CoreMethods.DisplayAlert("Info", "Are you sure you want to delete this?", "Alright", "Cancel");
+                var result = await CoreMethods.DisplayAlert("Info", $"Are you sure you want to delete {content.Name}?", "Alright", "Cancel");
                 if (result)
                 {
                     var isDeleted = await _restServices.DeleteEquipment(content.Id);

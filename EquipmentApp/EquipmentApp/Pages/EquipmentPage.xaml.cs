@@ -22,7 +22,7 @@ namespace EquipmentApp.Pages
 
         private void btnEdit_Clicked(object sender, EventArgs e)
         {
-            var button = sender as Button;
+            var button = sender as ImageButton;
 
             var equipment = button.BindingContext as EquipmentViewModel;
 
@@ -33,7 +33,7 @@ namespace EquipmentApp.Pages
 
         private void btnDelete_Clicked(object sender, EventArgs e)
         {
-            var button = sender as Button;
+            var button = sender as ImageButton;
 
             var equipment = button.BindingContext as EquipmentViewModel;
 
