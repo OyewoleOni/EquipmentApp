@@ -37,11 +37,18 @@ namespace EquipmentApp.Services
                 {
                     Id = item.Id,
                     Name = item.Name,
-                    Type = new Models.EquipmentType()
+                    Type = new EquipmentType()
                     {
                         Id = item.Type,
                         TypeName = item.TypeName
                     },
+
+                    Status = new EquipmentStatus()
+                    {
+                        Id = item.Status,
+                        StatusName = item.StatusName
+                    },
+
                     Quantity = item.Quantity
                 };
                 equipmentViewModels.Add(equipmentVM);
@@ -60,7 +67,6 @@ namespace EquipmentApp.Services
 
         public async Task<List<EquipmentViewModel>> SearchEquipment(string name)
         {
-            
             List<EquipmentViewModel> equipmentViewModels = new List<EquipmentViewModel>();
 
             var response = await httpClient.GetAsync($"{URL}/search?name={name}");
@@ -91,13 +97,19 @@ namespace EquipmentApp.Services
             {
                 return equipmentViewModels;
             }
-
-            
         }
 
         public async Task<bool> DeleteEquipment(string id)
         {
             var response = await httpClient.DeleteAsync($"{URL}/{id}");
+            return response.IsSuccessStatusCode;
+        }
+
+        public async Task<bool> UpdateEquipment(EquipmentUpdate equipment)
+        {
+            var json = JsonConvert.SerializeObject(equipment);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await httpClient.PutAsync($"{URL}/{equipment.Id}", content);
             return response.IsSuccessStatusCode;
         }
     }

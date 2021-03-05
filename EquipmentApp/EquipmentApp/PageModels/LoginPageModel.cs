@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace EquipmentApp.PageModels
@@ -13,17 +14,16 @@ namespace EquipmentApp.PageModels
 
         public Color PageBackGroundColor { get; set; }
         public Color MainTextColor { get; set; }
-        public Command LoginCommand { get; set; }
-        public Command RegisterCommand { get; set; }
-        public Command UserNameCompletedCommand { get; set; }
-        public Command PasswordFocusCommand { get; set; }
-        
+        public ICommand LoginCommand { get; set; }
+        public ICommand RegisterCommand { get; set; }
+        public ICommand UserNameCompletedCommand { get; set; }
+        public ICommand PasswordFocusCommand { get; set; }
+
 
         public LoginPageModel()
         {
             LoginCommand = new Command(Login);
             RegisterCommand = new Command(Register);
-            //UserNameCompletedCommand = new Command<Entry>(UserNameCompleted);
             PasswordFocusCommand = new Command<Entry>(PasswordFocus);
             PageBackGroundColor = Models.Constants.BackgroundColor;
             MainTextColor = Models.Constants.MainTextColor;
@@ -46,17 +46,17 @@ namespace EquipmentApp.PageModels
 
         private async void Login()
         {
-           
+            IsBusy = true;
             User user = new User(UserName, Password);
             if (user.CheckUserInfo())
             {
-               await CoreMethods.PushPageModel<EquipmentPageModel>();
-                
+                await CoreMethods.PushPageModel<EquipmentPageModel>(user);
+                IsBusy = false;
             }
             else
             {
-             
-               await CoreMethods.DisplayAlert("Wrong User", "Your credentials are not correct. Please check them. Thanks", "Cancel");
+                await CoreMethods.DisplayAlert("Wrong User", "Your credentials are not correct. Please check them. Thanks", "Cancel");
+                IsBusy = false;
             }
         }
 
@@ -76,12 +76,16 @@ namespace EquipmentApp.PageModels
             set { _password = value; }
         }
 
-        private bool isBusy = true;
+        private bool isBusy;
 
         public bool IsBusy
         {
             get { return isBusy; }
-            set { isBusy = value; }
+            set
+            {
+                isBusy = value;
+                RaisePropertyChanged();
+            }
         }
 
 

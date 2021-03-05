@@ -13,6 +13,7 @@ namespace EquipmentApp.Interfaces
         Task<Equipment> GetEquipment(string id);
         Task<List<EquipmentViewModel>> SearchEquipment(string name);
         Task<bool> PostEquipment(EquipmentPost equipment);
+        Task<bool> UpdateEquipment(EquipmentUpdate equipment);
         Task<bool> DeleteEquipment(string id);
     }
 }

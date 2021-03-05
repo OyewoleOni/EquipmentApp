@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:EquipmentApp.Pages"
              xmlns:converters="clr-namespace:EquipmentApp;assembly=EquipmentApp"
              mc:Ignorable="d"
              x:Class="EquipmentApp.Pages.EquipmentPage"
@@ -17,42 +18,64 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Entry x:Name="entSearch" Completed="entSearch_Completed"  Placeholder="Search"/>
-            <Grid>
-                <ListView x:Name="lvEquipment" HasUnevenRows="True" IsVisible="{Binding HasItem}" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Grid ColumnSpacing="5">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="7*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackLayout Padding="5, 10,0,10" Grid.Column="0">
-                                        <Label Text="{Binding Name}" TextColor="Black" FontSize="Large"/>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="Type: " TextColor="Gray" FontSize="Subtitle"/>
-                                            <Label Text="{Binding Type.TypeName}" TextColor="Gray" FontSize="Subtitle"/>
-                                        </StackLayout>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="Quantity: " TextColor="Gray" FontSize="Subtitle"/>
-                                            <Label Text="{Binding Quantity}" TextColor="Gray" FontSize="Subtitle"/>
-                                        </StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ScrollView Grid.Row="0">
+                <StackLayout>
+                    <Entry x:Name="entSearch" Completed="entSearch_Completed"  Placeholder="Search"/>
+                    <Grid>
+                        <ListView x:Name="lvEquipment" HasUnevenRows="True" IsVisible="{Binding HasItem}" ItemsSource="{Binding Equipments}" 
+                          SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid ColumnSpacing="5">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="7*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Padding="5, 10,0,10" Grid.Column="0">
+                                                <Label Text="{Binding Name}" TextColor="Black" FontSize="Large"/>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Type: " TextColor="Gray" FontSize="Subtitle"/>
+                                                    <Label Text="{Binding Type.TypeName}" TextColor="Gray" FontSize="Subtitle"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="Quantity: " TextColor="Gray" FontSize="Subtitle"/>
+                                                    <Label Text="{Binding Quantity}" TextColor="Gray" FontSize="Subtitle"/>
+                                                </StackLayout>
 
-                                    </StackLayout>
+                                            </StackLayout>
 
-                                    <ImageButton  x:Name="btnEdit" BackgroundColor="Transparent" Source="edit2.png" WidthRequest="60" HeightRequest="60" Grid.Column="1" Clicked="btnEdit_Clicked"/>
-                                    <ImageButton  x:Name="btnDelete"  BackgroundColor="Transparent" Source="trash.png" WidthRequest="60" HeightRequest="60"   Grid.Column="2" Clicked="btnDelete_Clicked"/>
-                                </Grid>
+                                            <ImageButton  x:Name="btnEdit" BackgroundColor="Transparent" Source="edit2.png" WidthRequest="60" HeightRequest="60" Grid.Column="1" Clicked="btnEdit_Clicked"/>
+                                            <ImageButton  x:Name="btnDelete"  BackgroundColor="Transparent" Source="trash.png" WidthRequest="60" HeightRequest="60"   Grid.Column="2" Clicked="btnDelete_Clicked"/>
+                                        </Grid>
 
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="Red" IsRunning="{Binding IsBusy}"/>
-                <Label Text="No Equipments found" IsVisible="{Binding HasItem, Converter={StaticResource reverseBool}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-            </Grid>
-        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="Red" IsRunning="{Binding IsBusy}"/>
+                        <Label Text="No Equipments found" IsVisible="{Binding HasItem, Converter={StaticResource reverseBool}}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+            <Button Grid.Row="0" Text="Log out" BorderColor="#2b3c3c" BorderWidth="1" FontAttributes="Bold" BackgroundColor="#3399FF" Command="{Binding LogoutCommand}" 
+                    BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="100" HeightRequest="50" Margin="0,0,20,50" VerticalOptions="End"/>
+
+            <!--<Button Grid.Row="0" Text="Log out" x:Name="checkSnack" BorderColor="#2b3c3c" BorderWidth="1" FontAttributes="Bold" BackgroundColor="#3399FF" Clicked="checkSnack_Clicked" 
+                    BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="100" HeightRequest="50" Margin="0,0,20,50" VerticalOptions="End"/>-->
+
+            <local:SnackBar  x:Name="SnackB" HeightRequest="50" FontSize="{OnPlatform iOS=12, Android=17, UWP=15}"
+                             BackgroundColor="#323232" 
+                             TextColor="White"
+                             IsOpen="True"
+                             VerticalOptions="End"
+                             Message="{Binding WelcomeMessage}"
+                             ButtonTextColor="Orange"
+                             CloseButtonText="Exit"/>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

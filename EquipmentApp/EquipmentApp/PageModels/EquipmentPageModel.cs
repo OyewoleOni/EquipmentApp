@@ -21,6 +21,7 @@ namespace EquipmentApp.PageModels
         public ICommand DeleteEquipmentCommand { get; set; }
         public ICommand EditEquipmentCommand { get; set; }
         public ICommand SearchCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
         public EquipmentPageModel(IRestServices restServices)
         {
             _restServices = restServices;
@@ -30,13 +31,26 @@ namespace EquipmentApp.PageModels
             DeleteEquipmentCommand = new Command(deleteEquipment);
             EditEquipmentCommand = new Command(editEqupment);
             SearchCommand = new Command(searchEquipment);
+            LogoutCommand = new Command(logout);
+        }
+
+        public override void Init(object initData)
+        {
+            base.Init(initData);
+            User = (User)initData;
+            WelcomeMessage = $"Welcome  {User.UserName}";
+        }
+        private void logout(object obj)
+        {
+            CoreMethods.PushPageModel<LoginPageModel>();
         }
 
         private async void searchEquipment(object obj)
         {
             var searchText = obj as string;
 
-            var equipments = (string.IsNullOrWhiteSpace(searchText) ? await _restServices.GetEquipments() : await _restServices.SearchEquipment(searchText));
+            var equipments = (string.IsNullOrWhiteSpace(searchText) ? await _restServices.GetEquipments() : 
+                                            await _restServices.SearchEquipment(searchText));
             Equipments.Clear();
             foreach (var equipment in equipments)
             {
@@ -48,7 +62,12 @@ namespace EquipmentApp.PageModels
 
         private void editEqupment(object obj)
         {
-            throw new NotImplementedException();
+            var equipment = obj as EquipmentViewModel;
+
+            //MessagingCenter.Send(this, "edit", equipment);
+            CoreMethods.PushPageModel<AddEquipmentPageModel>(equipment);
+
+           // throw new NotImplementedException();
         }
 
         private async void deleteEquipment(object obj)
@@ -129,6 +148,22 @@ namespace EquipmentApp.PageModels
                 RaisePropertyChanged();
             }
         }
+        private User _user;
+
+        public User User
+        {
+            get { return _user; }
+            set { _user = value; }
+        }
+
+        private string _welcomeMessage;
+
+        public string WelcomeMessage
+        {
+            get { return _welcomeMessage; }
+            set { _welcomeMessage = value; }
+        }
+
 
     }
 }

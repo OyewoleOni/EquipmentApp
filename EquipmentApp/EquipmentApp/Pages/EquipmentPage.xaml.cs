@@ -17,6 +17,7 @@ namespace EquipmentApp.Pages
         public EquipmentPage()
         {
             InitializeComponent();
+           
         }
 
 
@@ -38,7 +39,7 @@ namespace EquipmentApp.Pages
             var equipment = button.BindingContext as EquipmentViewModel;
 
             var vm = BindingContext as EquipmentPageModel;
-
+            
             vm?.DeleteEquipmentCommand.Execute(equipment);
         }
 
@@ -51,6 +52,12 @@ namespace EquipmentApp.Pages
             var vm = BindingContext as EquipmentPageModel;
 
             vm?.SearchCommand.Execute(searchText);
+        }
+
+        private void checkSnack_Clicked(object sender, EventArgs e)
+        {
+            //SnackB.Message = "I'm a snack bar... I love showing my self.";
+            //SnackB.IsOpen = !SnackB.IsOpen;
         }
     }
 }

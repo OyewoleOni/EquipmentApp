@@ -15,12 +15,19 @@ namespace EquipmentApp.PageModels
         public System.Drawing.Color MainTextColor { get; set; }
 
         public Command RegisterCommand { get; set; }
+        public Command LoginCommand { get; set; }
 
         public RegisterPageModel()
         {
             RegisterCommand = new Command(Register);
+            LoginCommand = new Command(login);
             PageBackGroundColor = Models.Constants.BackgroundColor;
             MainTextColor = Models.Constants.MainTextColor;
+        }
+
+        private void login(object obj)
+        {
+            CoreMethods.PushPageModel<LoginPageModel>();
         }
 
         private string _userName;
