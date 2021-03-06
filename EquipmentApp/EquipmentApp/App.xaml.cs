@@ -15,6 +15,7 @@ namespace EquipmentApp
         static UserDatabaseController userDatabase;
         public App()
         {
+            Device.SetFlags(new string[] { "Shapes_Experimental" });
             InitializeComponent();
             FreshIOC.Container.Register<IRestServices, RestServices>();
 

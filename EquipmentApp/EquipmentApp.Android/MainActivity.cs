@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using FFImageLoading.Forms.Platform;
 
 namespace EquipmentApp.Droid
 {
@@ -14,6 +15,7 @@ namespace EquipmentApp.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            CachedImageRenderer.Init(true);
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 

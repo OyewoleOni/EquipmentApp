@@ -1,33 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:ffsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             mc:Ignorable="d"
              x:Class="EquipmentApp.Pages.RegisterPage"
-              BackgroundColor="{Binding PageBackGroundColor}"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout x:Name="MasterLayout">
-            <StackLayout x:Name="LogoStack">
-                <Image x:Name="LogoIcon" Source="LogoIcon.png" Margin="0,60,0,0" HeightRequest="150" WidthRequest="150"/>
-            </StackLayout>
-            <StackLayout x:Name="LoginEntries">
-                <StackLayout.Padding>
-                    <OnIdiom x:TypeArguments="Thickness">
-                        <OnIdiom.Phone>40,40,40,0</OnIdiom.Phone>
-                    </OnIdiom>
-                </StackLayout.Padding>
-
-                <!--<ActivityIndicator x:Name="ActivitySpinner" Color="Red" IsRunning="True" IsVisible="{Binding IsRunning}"/>-->
-
-                <Entry x:Name="entUserName" Completed="entUserName_Completed" Placeholder="Username" Text="{Binding UserName, Mode=TwoWay}" TextColor="{Binding MainTextColor}" />
-
-                <Entry x:Name="entPassword" Completed="entPassword_Completed" Placeholder="Password" IsPassword="True" Text="{Binding Password, Mode=TwoWay}" 
-                       TextColor="{Binding MainTextColor}"/>
-
-                <Entry x:Name="entConfirmPassword" Completed="entConfirmPassword_Completed" Placeholder="Confirm Password" IsPassword="True" Text="{Binding ConfirmPassword, Mode=TwoWay}" 
-                       TextColor="{Binding MainTextColor}"/>
-                <Button x:Name="btnRegister" Text="Register" Command="{Binding RegisterCommand}" />
-                <Button x:Name="btnLogin" Text="Login" Command="{Binding LoginCommand}" />
-            </StackLayout>
-        </StackLayout>
+        <ScrollView>
+            <Grid BackgroundColor="White">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="140"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Path Fill="#007fff" Stroke="#007fff"  Aspect="Fill" Data="m126.8675,108.63527l343,0l0,147.02589c-128.5,-58 -207.5,41.01956 -343,24.19026l0,-171.21615z" />
+                <Grid RowSpacing="20" Grid.Row="1" Margin="20,0,20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ffsvg:SvgCachedImage HeightRequest="70" Source="repair_tools1.svg"/>
+                    <Entry x:Name="entUserName" Completed="entUserName_Completed" Grid.Row="1" Placeholder="Username" Text="{Binding UserName}" PlaceholderColor="#bababa" FontSize="16"/>
+                    <Entry x:Name="entPassword" IsPassword="True" Grid.Row="2" Placeholder="Password" PlaceholderColor="#bababa" Text="{Binding Password}" FontSize="16"/>
+                    <Entry x:Name="entConfirmPassword" IsPassword="True" Grid.Row="3" Placeholder="Confirm Password" PlaceholderColor="#bababa" Text="{Binding ConfirmPassword}" FontSize="16"/>
+                    <Button x:Name="btnRegister" Text="Sign Up" CornerRadius="20" BackgroundColor="#3897f0" TextColor="White" HeightRequest="50" Command="{Binding RegisterCommand}" VerticalOptions="Start" Grid.Row="4"/>
+                    
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Grid.Row="6">
+                        <!--<Label Text="Login With Facebook" TextColor="#485992"  />-->
+                        <Label Text="Done Registering?" VerticalTextAlignment="Center" />
+                        <Button x:Name="btnLogin" CornerRadius="15" Text="Login" BackgroundColor="#3897f0"  Command="{Binding LoginCommand}" TextColor="White" HeightRequest="30"/>
+                    </StackLayout>
+                </Grid>
+                <StackLayout Grid.Row="2" BackgroundColor="#ffffff">
+                    <Label HeightRequest="1" BackgroundColor="#e3e3e3"/>
+                    <!--<Label Text="Dont'Have Account Login? SignUp" VerticalOptions="FillAndExpand"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>-->
+                </StackLayout>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
