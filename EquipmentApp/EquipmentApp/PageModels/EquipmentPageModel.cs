@@ -38,7 +38,24 @@ namespace EquipmentApp.PageModels
         {
             base.Init(initData);
             User = (User)initData;
-            WelcomeMessage = $"Welcome  {User.UserName}";
+            //WelcomeMessage = $"Welcome  {User.UserName}";
+            //IsOpen = true;
+            if (User != null)
+            {
+                WelcomeMessage = $"Welcome  {User.UserName}";
+                IsOpen = "True";
+            }
+            else
+            {
+                WelcomeMessage = "";
+                IsOpen = "False";
+            }
+        }
+
+        protected override void ViewIsAppearing(object sender, EventArgs e)
+        {
+            base.ViewIsAppearing(sender, e);
+
         }
         private void logout(object obj)
         {
@@ -49,7 +66,7 @@ namespace EquipmentApp.PageModels
         {
             var searchText = obj as string;
 
-            var equipments = (string.IsNullOrWhiteSpace(searchText) ? await _restServices.GetEquipments() : 
+            var equipments = (string.IsNullOrWhiteSpace(searchText) ? await _restServices.GetEquipments() :
                                             await _restServices.SearchEquipment(searchText));
             Equipments.Clear();
             foreach (var equipment in equipments)
@@ -67,7 +84,7 @@ namespace EquipmentApp.PageModels
             //MessagingCenter.Send(this, "edit", equipment);
             CoreMethods.PushPageModel<AddEquipmentPageModel>(equipment);
 
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
         }
 
         private async void deleteEquipment(object obj)
@@ -161,8 +178,25 @@ namespace EquipmentApp.PageModels
         public string WelcomeMessage
         {
             get { return _welcomeMessage; }
-            set { _welcomeMessage = value; }
+            set
+            {
+                _welcomeMessage = value;
+                RaisePropertyChanged();
+            }
         }
+
+        private string _isOpen;
+
+        public string IsOpen
+        {
+            get { return _isOpen; }
+            set
+            {
+                _isOpen = value;
+                RaisePropertyChanged();
+            }
+        }
+
 
 
     }

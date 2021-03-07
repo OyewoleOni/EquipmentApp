@@ -15,6 +15,7 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converters:ReversesBoolConverter x:Key="reverseBool"/>
+            <converters:BoolToStringConverter x:Key="boolToString"/>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>

@@ -73,8 +73,9 @@ namespace EquipmentApp.Services
 
             if((int)response.StatusCode == 200)
             {
-                var body = await httpClient.GetStringAsync($"{URL}/search?name={name}");
-                var equipments = JsonConvert.DeserializeObject<List<Equipment>>(body);
+                var body = response.Content.ReadAsStringAsync();
+               
+                var equipments = JsonConvert.DeserializeObject<List<Equipment>>(body.Result);
 
                 foreach (var item in equipments)
                 {

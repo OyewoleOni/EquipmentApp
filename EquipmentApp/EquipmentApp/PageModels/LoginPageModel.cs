@@ -44,19 +44,20 @@ namespace EquipmentApp.PageModels
             obj.Focus();
         }
 
-        private async void Login()
+        private void Login()
         {
             IsBusy = true;
             User user = new User(UserName, Password);
             if (user.CheckUserInfo())
             {
-                await CoreMethods.PushPageModel<EquipmentPageModel>(user);
                 IsBusy = false;
+                CoreMethods.PushPageModel<EquipmentPageModel>(user);
+                
             }
             else
             {
-                await CoreMethods.DisplayAlert("Wrong User", "Your credentials are not correct. Please check them. Thanks", "Cancel");
                 IsBusy = false;
+                CoreMethods.DisplayAlert("Wrong User", "Your credentials are not correct. Please check them. Thanks", "Cancel");
             }
         }
 
