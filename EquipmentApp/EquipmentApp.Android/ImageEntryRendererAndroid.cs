@@ -16,13 +16,17 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(RoundedEntry), typeof(RoundedEntryRendererAndroid))]
+[assembly: ExportRenderer(typeof(ImageEntry), typeof(ImageEntryRendererAndroid))]
 namespace EquipmentApp.Droid
 {
-    [Obsolete]
-    public class RoundedEntryRendererAndroid : EntryRenderer
+   public class ImageEntryRendererAndroid : EntryRenderer
     {
-        RoundedEntry element;
+        ImageEntry element;
+        public ImageEntryRendererAndroid(Context context) : base(context)
+        {
+
+        }
+
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
             base.OnElementChanged(e);
@@ -30,16 +34,10 @@ namespace EquipmentApp.Droid
             if (e.OldElement != null || e.NewElement == null)
                 return;
 
-            element = (RoundedEntry)this.Element;
+            element = (ImageEntry)this.Element;
+
+
             var editText = this.Control;
-
-            var gradientDrawable = new GradientDrawable();
-            gradientDrawable.SetCornerRadius(60f);
-            gradientDrawable.SetStroke(2, Android.Graphics.Color.Gray);
-            gradientDrawable.SetColor(Android.Graphics.Color.White);
-            editText.SetBackground(gradientDrawable);
-
-            editText.SetPadding(15, Control.PaddingTop, Control.PaddingRight, Control.PaddingBottom);
             if (!string.IsNullOrEmpty(element.Image))
             {
                 switch (element.ImageAlignment)
@@ -52,17 +50,8 @@ namespace EquipmentApp.Droid
                         break;
                 }
             }
-            //if(e.OldElement == null)
-            //{
-            //   var gradientDrawable = new GradientDrawable();
-            //    gradientDrawable.SetCornerRadius(60f);
-            //    gradientDrawable.SetStroke(2, Android.Graphics.Color.Gray);
-            //    gradientDrawable.SetColor(Android.Graphics.Color.White);
-            //    Control.SetBackground(gradientDrawable);
-
-            //    Control.SetPadding(50, Control.PaddingTop, Control.PaddingRight, Control.PaddingBottom);
-
-            //}
+            editText.CompoundDrawablePadding = 25;
+            Control.Background.SetColorFilter(element.LineColor.ToAndroid(), PorterDuff.Mode.SrcAtop);
         }
 
         private BitmapDrawable GetDrawable(string imageEntryImage)

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EquipmentApp.Pages.SampleLoginPage"
+             NavigationPage.HasNavigationBar="False"
              BackgroundImageSource="bg2.jpg">
     <ContentPage.Content>
         <StackLayout>
@@ -14,12 +15,12 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <Image Source="" HeightRequest="100" WidthRequest="100" />
+                    <Image Source="blue_streak.png" HeightRequest="100" WidthRequest="100" />
                     <Label Text="Employee Login" Grid.Row="1" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                            FontAttributes="Bold" TextColor="#024c91" FontSize="32"/>
                     <Label Text="Authentication Service by Microsost" TextColor="Gray" Grid.Row="2" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"
                            FontAttributes="Bold" FontSize="10"/>
-                    <Button Grid.Row="3" Text="Log In" TextColor="White" HeightRequest="40" BackgroundColor="#024c91" CornerRadius="20"/>
+                    <Button Grid.Row="3" Text="Log In" TextColor="White" Command="{Binding LoginCommand}" HeightRequest="40" BackgroundColor="#024c91" CornerRadius="20"/>
                 </Grid>
             </Frame>
         </StackLayout>

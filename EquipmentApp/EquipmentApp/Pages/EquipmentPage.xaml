@@ -69,14 +69,14 @@
             <!--<Button Grid.Row="0" Text="Log out" x:Name="checkSnack" BorderColor="#2b3c3c" BorderWidth="1" FontAttributes="Bold" BackgroundColor="#3399FF" Clicked="checkSnack_Clicked" 
                     BorderRadius="35" TextColor="White" HorizontalOptions="End" WidthRequest="100" HeightRequest="50" Margin="0,0,20,50" VerticalOptions="End"/>-->
 
-            <local:SnackBar  x:Name="SnackB" HeightRequest="50" FontSize="{OnPlatform iOS=12, Android=17, UWP=15}"
+            <!--<local:SnackBar  x:Name="SnackB" HeightRequest="50" FontSize="{OnPlatform iOS=12, Android=17, UWP=15}"
                              BackgroundColor="#323232" 
                              TextColor="White"
                              IsOpen="True"
                              VerticalOptions="End"
                              Message="{Binding WelcomeMessage}"
                              ButtonTextColor="Orange"
-                             CloseButtonText="Exit"/>
+                             CloseButtonText="Exit"/>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

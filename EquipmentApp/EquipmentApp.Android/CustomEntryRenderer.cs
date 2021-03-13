@@ -7,6 +7,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using EquipmentApp.CustomRenders;
+using EquipmentApp.Droid;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,7 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
+[assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
 namespace EquipmentApp.Droid
 {
     [Obsolete]

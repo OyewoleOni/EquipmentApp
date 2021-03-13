@@ -51,12 +51,6 @@ namespace EquipmentApp.PageModels
                 IsOpen = "False";
             }
         }
-
-        protected override void ViewIsAppearing(object sender, EventArgs e)
-        {
-            base.ViewIsAppearing(sender, e);
-
-        }
         private void logout(object obj)
         {
             CoreMethods.PushPageModel<LoginPageModel>();
@@ -83,7 +77,6 @@ namespace EquipmentApp.PageModels
 
             //MessagingCenter.Send(this, "edit", equipment);
             CoreMethods.PushPageModel<AddEquipmentPageModel>(equipment);
-
             // throw new NotImplementedException();
         }
 

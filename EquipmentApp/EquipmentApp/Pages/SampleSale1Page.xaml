@@ -3,11 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EquipmentApp.Pages.SampleSale1Page"
              xmlns:local="clr-namespace:EquipmentApp.CustomRenders"
+             NavigationPage.HasNavigationBar="False"
              BackgroundImageSource="bg2.jpg">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">#3ec3d5</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <Frame VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" HasShadow="True" CornerRadius="5" Margin="20,0,20,0" Padding="0"
-               HeightRequest="270" WidthRequest="450">
+               HeightRequest="400" WidthRequest="700">
                 <Grid RowSpacing="5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -16,15 +22,63 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <StackLayout Orientation="Horizontal" Spacing="5" Padding="10,10,10,0">
-                        <Label Text="Select Sales Center" HorizontalOptions="Start" VerticalOptions="Center"/>
+                        <Label Text="Select Sales Center" FontAttributes="Bold" FontSize="20" HorizontalOptions="Start" VerticalOptions="Center"/>
                         <!--<Entry Placeholder="Search Sales Center" FontSize="10" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>-->
-                        <local:RoundedEntry Placeholder="Search Sales Center" WidthRequest="200" FontSize="10" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+                        <!--<Frame BackgroundColor="Transparent" BorderColor="LightGray" WidthRequest="300"  HeightRequest="40" Padding="0" HorizontalOptions="EndAndExpand" CornerRadius="30">
+                            <StackLayout Orientation="Horizontal">
+                                <Frame BackgroundColor="Transparent" HeightRequest="20" WidthRequest="20" CornerRadius="30" Padding="0" Margin="5">
+                                    <Image Source="search_interface_symbol.png" Aspect="AspectFit"  Margin="0"/>
+                                </Frame>
+
+                                <Entry Placeholder="Search Sales Center" FontSize="13" TextColor="LightGray" FontAttributes="None" HorizontalOptions="FillAndExpand" Margin="0,0,0,0"/>
+                            </StackLayout>
+                        </Frame>-->
+                        <local:RoundedEntry Placeholder="Search Sales Center" Image="search_interface_symbol" WidthRequest="400" FontSize="15" HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+                        <!--<local:CustomEntry CornerRadius="18"  IsCurvedCornersEnabled="True" HorizontalTextAlignment="Center" FontSize="17"  
+                             HeightRequest="40" Placeholder="Custom Entry" PlaceholderColor="Gray" TextColor="Black" FontAttributes="Bold"  
+                             WidthRequest="100"/>-->
+                        <!--<local:ImageEntry TextColor="White" 
+                    PlaceholderColor="{StaticResource primary}" 
+                    Image="password" 
+                    Placeholder="Search Sales Center" 
+                    HorizontalOptions="FillAndExpand"
+                     FontSize="10"/>-->
                     </StackLayout>
                     <StackLayout  Grid.Row="2" BackgroundColor="#ffffff">
                         <Label HeightRequest="1" BackgroundColor="#e3e3e3"/>
                     </StackLayout>
+
+                    <CollectionView Grid.Row="3" ItemsSource="{Binding ListDetails}" BackgroundColor="White">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout Orientation="Vertical" Span="2" VerticalItemSpacing="6"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="4" Margin="4">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                    <Frame IsClippedToBounds="True" WidthRequest="200" Grid.Row="0" HasShadow="False"
+                                       Padding="0" BackgroundColor="White" BorderColor="AliceBlue">
+                                        <StackLayout Orientation="Horizontal" Spacing="2">
+                                            <BoxView HeightRequest="50" WidthRequest="5"/>
+                                            <StackLayout Padding="0" VerticalOptions="Center">
+                                                <Frame BackgroundColor="#f2f6f7" CornerRadius="5" HasShadow="False" Margin="2">
+                                                    <Image Source="{Binding ImgIcon}" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"/>
+                                                </Frame>
+                                            </StackLayout>
+                                            <StackLayout Margin="10,13,0,0" Spacing="2" HorizontalOptions="Center">
+                                                <Label Text="{Binding Name}"  FontAttributes="Bold"/>
+                                                <Label Text="3517 W.Gray St Utica" FontSize="10"/>
+                                                <Label Text="New Jersey" FontSize="10" />
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </Grid>
-                
             </Frame>
         </StackLayout>
     </ContentPage.Content>

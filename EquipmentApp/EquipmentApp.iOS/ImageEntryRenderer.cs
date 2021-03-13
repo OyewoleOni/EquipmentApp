@@ -1,6 +1,7 @@
 ﻿using CoreAnimation;
 using CoreGraphics;
 using EquipmentApp.CustomRenders;
+using EquipmentApp.iOS;
 using Foundation;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
+[assembly: ExportRenderer(typeof(ImageEntry), typeof(ImageEntryRenderer))]
 namespace EquipmentApp.iOS
 {
     public class ImageEntryRenderer : EntryRenderer

@@ -27,6 +27,7 @@ namespace EquipmentApp.Services
         public async Task<List<EquipmentViewModel>> GetEquipments()
         {
             List<EquipmentViewModel> equipmentViewModels = new List<EquipmentViewModel>();
+
             var response = await httpClient.GetStringAsync(URL);
 
             var equipments = JsonConvert.DeserializeObject<List<Equipment>>(response);

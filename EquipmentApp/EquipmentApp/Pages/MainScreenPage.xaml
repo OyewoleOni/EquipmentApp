@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:EquipmentApp.CustomRenders"
+             x:Class="EquipmentApp.Pages.MainScreenPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <StackLayout x:Name="top" Orientation="Horizontal" HorizontalOptions="FillAndExpand"  VerticalOptions="Center" Padding="15,5,0,0" Margin="0" >
+                <StackLayout x:Name="topLeft" Spacing="30" Orientation="Horizontal" VerticalOptions="Start" >
+                    <ImageButton BackgroundColor="Transparent" Source="menu_2.png" WidthRequest="20" HeightRequest="20"/>
+                    <Picker  Title="Select Stores" />
+                </StackLayout>
+                <BoxView WidthRequest="400"/>
+                <StackLayout x:Name="topRight" Spacing="30" Orientation="Horizontal" VerticalOptions="End" >
+                    <local:RoundedEntry Placeholder="Search Sales Center" Text="" Image="search_interface_symbol" WidthRequest="300" FontSize="15" 
+                                        HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+                    <ImageButton BackgroundColor="Transparent" Source="menu_2.png" WidthRequest="20" HeightRequest="20"/>
+                    <ImageButton BackgroundColor="Transparent" Source="menu_2.png" WidthRequest="20" HeightRequest="20"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout  Grid.Row="1" BackgroundColor="#ffffff">
+                <Label HeightRequest="1" BackgroundColor="#e3e3e3"/>
+            </StackLayout>
+            <StackLayout x:Name="bottom">
+                
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
